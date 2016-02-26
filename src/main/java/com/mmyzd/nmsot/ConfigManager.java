@@ -30,11 +30,7 @@ public class ConfigManager {
 	
 	@SubscribeEvent
 	public void onConfigurationChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if (event.modID.equals(NoMobSpawningOnTrees.MODID)) {
-			update();
-			if (NoMobSpawningOnTrees.instance.rules != null)
-				NoMobSpawningOnTrees.instance.rules = new RuleSet(blacklistRules.getStringList());
-		}
+		if (event.modID.equals(NoMobSpawningOnTrees.MODID)) update();
 	}
 	
 	void reload() {
@@ -80,6 +76,8 @@ public class ConfigManager {
 		updateSpawnCapacity("creature", spawnCapacityAnimal.getInt());
 		updateSpawnCapacity("ambient", spawnCapacityAmbient.getInt());
 		updateSpawnCapacity("waterCreature", spawnCapacityWater.getInt());
+		if (NoMobSpawningOnTrees.instance.rules != null)
+			NoMobSpawningOnTrees.instance.rules = new RuleSet(blacklistRules.getStringList());
 		file.save();
 	}
 	
