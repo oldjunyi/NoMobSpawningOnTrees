@@ -8,7 +8,7 @@ import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleMobType extends Rule {
 
-	public EnumCreatureType type;
+	EnumCreatureType type;
 	
 	public RuleMobType(LinkedList<Character> s) throws Exception {
 		RuleSet.nextPart(s);

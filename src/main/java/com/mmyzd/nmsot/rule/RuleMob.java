@@ -8,8 +8,8 @@ import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleMob extends Rule {
 
-	public String name, pfxn;
-	public Class<? extends Entity> ret;
+	String name, pfxn;
+	Class<? extends Entity> ret;
 	
 	public RuleMob(LinkedList<Character> s) throws Exception {
 		RuleSet.nextPart(s);
