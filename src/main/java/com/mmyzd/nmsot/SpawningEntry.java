@@ -13,9 +13,9 @@ public class SpawningEntry {
 	public Entity entity;
 	
 	public void init(LivingSpawnEvent.CheckSpawn event) {
-		x = (int)event.x;
+		x = (int)Math.floor(event.x);
 		y = (int)event.y - 1;
-		z = (int)event.z;
+		z = (int)Math.floor(event.z);
 		world  = event.world;
 		block  = world.getBlock(x, y, z);
 		damage = block.getDamageValue(world, x, y, z);
