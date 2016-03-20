@@ -17,7 +17,7 @@ public class RulePosition extends Rule {
 		if (pos.length != 3) throw new Exception("Invalid coordinate");
 		for (int i = 0; i < 3; i++) {
 			lhs[i] = 0;
-			rhs[i] = 1048576;
+			rhs[i] = 99999999;
 			if (pos[i].equals("*")) continue;
 			String[] u = pos[i].split("-");
 			if (u.length < 1 || u.length > 2) throw new Exception("Invalid coordinate");
