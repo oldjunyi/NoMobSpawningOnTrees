@@ -63,7 +63,8 @@ public class RuleSet extends Rule {
 		return Character.isWhitespace(c) || ":#()!~|&".indexOf(c) != -1;
 	}
 	
-	public static boolean getToken(LinkedList<Character> s, String target) {
+	public static boolean getTokenEqualsIgnoreCase(LinkedList<Character> s, String target) {
+		target = target.toLowerCase();
 		if (isDelimiter(skipSpace(s))) {
 			if (target.length() == 1 && target.charAt(0) == s.getFirst()) {
 				s.removeFirst();
@@ -73,7 +74,7 @@ public class RuleSet extends Rule {
 		}
 		int n = target.length();
 		for (int i = 0; i <= n; i++) {
-			char c = s.getFirst();
+			char c = Character.toLowerCase(s.getFirst());
 			if ((i == n && !isDelimiter(c)) ||
 				(i != n && c != target.charAt(i))) {
 				while (i > 0) s.addFirst(target.charAt(--i));
@@ -98,7 +99,7 @@ public class RuleSet extends Rule {
 	}
 	
 	public static void nextPart(LinkedList<Character> s) throws Exception {
-		if (!getToken(s, ":")) throw new Exception("Syntax error, \":\" is required");
+		if (!getTokenEqualsIgnoreCase(s, ":")) throw new Exception("Syntax error, \":\" is required");
 	}
 	
 	public static String getIdentifier(LinkedList<Character> s, String name) throws Exception {
@@ -140,17 +141,18 @@ public class RuleSet extends Rule {
 		boolean not = false;
 		for (; "!~".indexOf(skipSpace(s)) != -1; s.removeFirst()) not = !not;
 		Rule rule = null;
-		if (getToken(s, "(")) {
+		if (getTokenEqualsIgnoreCase(s, "(")) {
 			rule = expr(s);
-			if (!getToken(s, ")")) throw new Exception("Unmatched parentheses");
+			if (!getTokenEqualsIgnoreCase(s, ")")) throw new Exception("Unmatched parentheses");
 		} else {
-			if (getToken(s, "woodlogs")) rule = new RuleWood();
-			if (getToken(s, "block")) rule = new RuleBlock(s);
-			if (getToken(s, "material")) rule = new RuleMaterial(s);
-			if (getToken(s, "mob")) rule = new RuleMob(s);
-			if (getToken(s, "mobtype")) rule = new RuleMobType(s);
-			if (getToken(s, "dim")) rule = new RuleDimension(s);
-			if (getToken(s, "chance")) rule = new RuleChance(s);
+			if (getTokenEqualsIgnoreCase(s, "woodlogs")) rule = new RuleWood();
+			if (getTokenEqualsIgnoreCase(s, "block")) rule = new RuleBlock(s);
+			if (getTokenEqualsIgnoreCase(s, "position")) rule = new RulePosition(s);
+			if (getTokenEqualsIgnoreCase(s, "material")) rule = new RuleMaterial(s);
+			if (getTokenEqualsIgnoreCase(s, "mob")) rule = new RuleMob(s);
+			if (getTokenEqualsIgnoreCase(s, "mobtype")) rule = new RuleMobType(s);
+			if (getTokenEqualsIgnoreCase(s, "dim")) rule = new RuleDimension(s);
+			if (getTokenEqualsIgnoreCase(s, "chance")) rule = new RuleChance(s);
 		}
 		if (rule == null) throw new Exception("Invalid tag <" + getToken(s) + ">");
 		if (rule instanceof RuleNot && not) return ((RuleNot)rule).rule;

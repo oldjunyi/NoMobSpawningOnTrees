@@ -21,20 +21,24 @@ public class RuleBlock extends Rule {
 		String modid = RuleSet.getIdentifier(s, "modid");
 		RuleSet.nextPart(s);
 		String bname = RuleSet.getIdentifier(s, "block name");
-		int any = OreDictionary.WILDCARD_VALUE;
 		lhs = 0;
-		rhs = any - 1;
-		if (RuleSet.getToken(s, ":")) {
+		rhs = OreDictionary.WILDCARD_VALUE - 1;
+		if (RuleSet.getTokenEqualsIgnoreCase(s, ":")) {
 			String damageStr = RuleSet.getToken(s);
 			if (!damageStr.equals("*")) {
-				String[] ids = damageStr.split("-");
-				for (int i = 0; i < ids.length; i++)
-					if (!StringUtils.isNumeric(ids[i]) || ids[i].length() > 18)
-						throw new Exception("Invalid data value");
-				if (ids.length < 1 || ids.length > 2) throw new Exception("Invalid data value");
-				lhs = (int)Math.min(Long.parseLong(ids[0]), (long)any);
-				if (ids.length == 1) rhs = lhs;
-				if (ids.length == 2) rhs = (int)Math.min(Long.parseLong(ids[1]), (long)any - 1);
+				String[] u = damageStr.split("-");
+				if (u.length < 1 || u.length > 2) throw new Exception("Invalid block damage");
+				for (int i = 0; i < u.length; i++)
+					if (!StringUtils.isNumeric(u[i]) || u[i].length() > 18)
+						throw new Exception("Invalid block damage");
+				lhs = (int)Math.min(Long.parseLong(u[0]), rhs);
+				if (u.length == 1) rhs = lhs;
+				if (u.length == 2) rhs = (int)Math.min(Long.parseLong(u[1]), rhs);
+				if (lhs > rhs) {
+					int at = lhs;
+					lhs = rhs;
+					rhs = at;
+				}
 			}
 		}
 		block = GameRegistry.findBlock(modid, bname);

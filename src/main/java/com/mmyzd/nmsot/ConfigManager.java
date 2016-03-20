@@ -3,6 +3,8 @@ package com.mmyzd.nmsot;
 import java.io.File;
 import java.util.HashMap;
 
+import org.apache.logging.log4j.LogManager;
+
 import com.mmyzd.nmsot.rule.RuleSet;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
@@ -84,16 +86,20 @@ public class ConfigManager {
 	HashMap<String, Integer> capacityBackup = new HashMap<String, Integer>();
 	
 	void updateSpawnCapacity(String name, int cur) {
-		EnumCreatureType e = EnumCreatureType.valueOf(name);
-		if (cur == -1) {
-			Integer old = capacityBackup.get(name);
-			if (old == null) return;
-			ObfuscationReflectionHelper.setPrivateValue(EnumCreatureType.class, e, old, "maxNumberOfCreature", "field_75606_e");
-			capacityBackup.remove(name);
-		} else {
-			Integer old = capacityBackup.get(name);
-			if (old == null) capacityBackup.put(name, e.getMaxNumberOfCreature());
-			ObfuscationReflectionHelper.setPrivateValue(EnumCreatureType.class, e, cur, "maxNumberOfCreature", "field_75606_e");
+		try {
+			EnumCreatureType e = EnumCreatureType.valueOf(name);
+			if (cur == -1) {
+				Integer old = capacityBackup.get(name);
+				if (old == null) return;
+				ObfuscationReflectionHelper.setPrivateValue(EnumCreatureType.class, e, old, "maxNumberOfCreature", "field_75606_e");
+				capacityBackup.remove(name);
+			} else {
+				Integer old = capacityBackup.get(name);
+				if (old == null) capacityBackup.put(name, e.getMaxNumberOfCreature());
+				ObfuscationReflectionHelper.setPrivateValue(EnumCreatureType.class, e, cur, "maxNumberOfCreature", "field_75606_e");
+			}
+		} catch (Exception e) {
+			LogManager.getLogger(NoMobSpawningOnTrees.MODID).info("Failed to set spawn capacity for " + name);
 		}
 	}
 	
