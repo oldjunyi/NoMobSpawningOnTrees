@@ -18,6 +18,11 @@ public class IntegerRange {
 			String rhsStr = getIntegerStringFrom(token, lhsStr.length() + 1);
 			if (!validateIntegerLength(rhsStr)) throw new Exception("Invalid range");
 			ret.rhs = Integer.parseInt(rhsStr);
+			if (ret.lhs > ret.rhs) {
+				int tmp = ret.lhs;
+				ret.lhs = ret.rhs;
+				ret.rhs = tmp;
+			}
 			if (lhsStr.length() + rhsStr.length() + 1 != token.length())
 				throw new Exception("Invalid range");
 		}
