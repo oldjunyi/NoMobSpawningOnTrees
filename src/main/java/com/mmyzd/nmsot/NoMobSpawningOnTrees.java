@@ -34,6 +34,8 @@ public class NoMobSpawningOnTrees {
 	public RuleSet rules;
 	public double accumulatedSpawningTries;
 	
+	public MinecraftServer server;
+	
 	@NetworkCheckHandler
 	public boolean checkRemote(Map<String,String> name, Side side) {
 		return true;
@@ -42,6 +44,7 @@ public class NoMobSpawningOnTrees {
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandManager());
+		server = event.getServer();
 	}
 	
 	@EventHandler
@@ -66,7 +69,7 @@ public class NoMobSpawningOnTrees {
 	
 	@SubscribeEvent
 	public void onServerTick(TickEvent.ServerTickEvent event) {
-		if (event.side != Side.SERVER || event.phase != TickEvent.Phase.START) return;
+		if (event.side != Side.SERVER || event.phase != TickEvent.Phase.START || server == null) return;
 		
 		accumulatedSpawningTries += config.extraSpawningTries.getDouble(0.0);
 		int spawningTries = (int)Math.floor(accumulatedSpawningTries);
@@ -74,7 +77,6 @@ public class NoMobSpawningOnTrees {
 		if (spawningTries == 0) return;
 		
 		final SpawnerAnimals spawner = new SpawnerAnimals();
-		MinecraftServer server = MinecraftServer.getServer();
 		Integer[] ids = DimensionManager.getIDs((server.getTickCounter() & 511) == 0);
 		for (int i = 0; i < ids.length; i++) {
 			int id = ids[i].intValue();
