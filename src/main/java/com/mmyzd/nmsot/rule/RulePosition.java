@@ -15,8 +15,8 @@ public class RulePosition extends Rule {
 		String[] pos = RuleSet.getToken(s).split(",");
 		if (pos.length != 3) throw new Exception("Invalid coordinate");
 		IntegerRange rangeX = IntegerRange.parse(pos[0]);
-		IntegerRange rangeY = IntegerRange.parse(pos[0]);
-		IntegerRange rangeZ = IntegerRange.parse(pos[0]);
+		IntegerRange rangeY = IntegerRange.parse(pos[1]);
+		IntegerRange rangeZ = IntegerRange.parse(pos[2]);
 		lhsX = rangeX.lhs;
 		lhsY = rangeY.lhs - 1;
 		lhsZ = rangeZ.lhs;
