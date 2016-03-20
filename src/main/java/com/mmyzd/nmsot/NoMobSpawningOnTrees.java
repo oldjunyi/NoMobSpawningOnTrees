@@ -4,7 +4,6 @@ import java.util.Map;
 
 import com.mmyzd.nmsot.rule.RuleSet;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.WorldServer;

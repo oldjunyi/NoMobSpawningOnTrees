@@ -2,8 +2,6 @@ package com.mmyzd.nmsot.rule;
 
 import java.util.LinkedList;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.mmyzd.nmsot.SpawningEntry;
 
 public class RulePosition extends Rule {
