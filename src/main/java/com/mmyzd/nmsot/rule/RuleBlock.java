@@ -2,8 +2,6 @@ package com.mmyzd.nmsot.rule;
 
 import java.util.LinkedList;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.minecraft.block.Block;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -24,22 +22,9 @@ public class RuleBlock extends Rule {
 		lhs = 0;
 		rhs = OreDictionary.WILDCARD_VALUE - 1;
 		if (RuleSet.getTokenEqualsIgnoreCase(s, ":")) {
-			String damageStr = RuleSet.getToken(s);
-			if (!damageStr.equals("*")) {
-				String[] u = damageStr.split("-");
-				if (u.length < 1 || u.length > 2) throw new Exception("Invalid block damage");
-				for (int i = 0; i < u.length; i++)
-					if (!StringUtils.isNumeric(u[i]) || u[i].length() > 18)
-						throw new Exception("Invalid block damage");
-				lhs = (int)Math.min(Long.parseLong(u[0]), rhs);
-				if (u.length == 1) rhs = lhs;
-				if (u.length == 2) rhs = (int)Math.min(Long.parseLong(u[1]), rhs);
-				if (lhs > rhs) {
-					int at = lhs;
-					lhs = rhs;
-					rhs = at;
-				}
-			}
+			IntegerRange range = IntegerRange.parse(RuleSet.getToken(s));
+			lhs = range.lhs;
+			rhs = range.rhs;
 		}
 		block = GameRegistry.findBlock(modid, bname);
 	}
