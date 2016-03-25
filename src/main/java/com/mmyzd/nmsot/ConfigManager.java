@@ -32,22 +32,20 @@ public class ConfigManager {
 	
 	@SubscribeEvent
 	public void onConfigurationChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if (event.modID.equals(NoMobSpawningOnTrees.MODID)) update();
+		if (event.getModID().equals(NoMobSpawningOnTrees.MODID)) update();
 	}
 	
 	void reload() {
 		file.load();
 		
-		extraSpawningTries = file.get("general", "extraSpawningTries", 0.0);
-		extraSpawningTries.comment = "Extra spawning tries per tick. This will only applies to hostile mobs.";
+		extraSpawningTries = file.get("general", "extraSpawningTries", 0.0, "Extra spawning tries per tick. This will only applies to hostile mobs.");
 		
+		String spawnCapacityComment = "The capacity is the maximum (approximate) number of creatures can exist near the player.";
+		spawnCapacityComment += "\nSet -1 to use the default value, which is: monster(70), animal(10), ambient(15), water(5)";
 		spawnCapacityMonster = file.get("general", "spawnCapacityMonster", -1);
 		spawnCapacityAnimal  = file.get("general", "spawnCapacityAnimal" , -1);
-		spawnCapacityAmbient = file.get("general", "spawnCapacityAmbient", -1);
+		spawnCapacityAmbient = file.get("general", "spawnCapacityAmbient", -1, spawnCapacityComment);
 		spawnCapacityWater   = file.get("general", "spawnCapacityWater"  , -1);
-		
-		spawnCapacityAmbient.comment = "The capacity is the maximum (approximate) number of creatures can exist near the player.";
-		spawnCapacityAmbient.comment += "\nSet -1 to use the default value, which is: monster(70), animal(10), ambient(15), water(5)";
 		
 		blacklistRules = file.get("general", "blacklistRules", new String[] {
 			"woodlogs    # This line disables mob spawning on all types of wood logs.",
@@ -62,8 +60,7 @@ public class ConfigManager {
 			"# For example, \"-mob:EntityCreeper\" or \"-mob:creeper\" allows creeper to spawn.",
 			"# The rules are applied one by one, if there is conflict between blacklist and whitelist,",
 			"# the latter rule will override the former rule."
-		});
-		blacklistRules.comment = "For details, please check https://github.com/oldjunyi/NoMobSpawningOnTrees/wiki";
+		}, "For details, please check https://github.com/oldjunyi/NoMobSpawningOnTrees/wiki");
 		
 		update();
 	}

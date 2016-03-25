@@ -17,15 +17,15 @@ public class SpawningEntry {
 	public Entity entity;
 	
 	public void init(LivingSpawnEvent.CheckSpawn event) {
-		x = (int)Math.floor(event.x);
-		y = (int)event.y - 1;
-		z = (int)Math.floor(event.z);
+		x = (int)Math.floor(event.getX());
+		y = (int)event.getY() - 1;
+		z = (int)Math.floor(event.getZ());
 		pos = new BlockPos(x, y, z);
-		world  = event.world;
+		world  = event.getWorld();
 		blockState = world.getBlockState(pos);
 		block  = blockState.getBlock();
 		damage = block.damageDropped(blockState);
-		entity = event.entity;
+		entity = event.getEntity();
 	}
 	
 }
