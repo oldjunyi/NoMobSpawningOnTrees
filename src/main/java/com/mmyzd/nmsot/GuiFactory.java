@@ -11,11 +11,7 @@ public class GuiFactory implements IModGuiFactory {
 	@Override
 	public void initialize(Minecraft minecraftInstance) {
 	}
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 	@Override
 	public Class<? extends GuiScreen> mainConfigGuiClass() {
 		return GuiModConfig.class;

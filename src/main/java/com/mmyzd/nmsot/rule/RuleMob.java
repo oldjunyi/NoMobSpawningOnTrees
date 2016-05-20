@@ -1,6 +1,5 @@
 package com.mmyzd.nmsot.rule;
 
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -65,39 +64,11 @@ public class RuleMob extends Rule {
 		HashSet<Class<? extends Entity>> group = lookup.get(key);
 		if (group == null) lookup.put(key, group = new HashSet<Class<? extends Entity>>());
 		group.add(value);
-=======
-import java.util.LinkedList;
-
-import net.minecraft.entity.Entity;
-
-import com.mmyzd.nmsot.SpawningEntry;
-
-public class RuleMob extends Rule {
-
-	String name, pfxn;
-	Class<? extends Entity> ret;
-	
-	public RuleMob(LinkedList<Character> s) throws Exception {
-		RuleSet.nextPart(s);
-		name = RuleSet.getIdentifier(s, "mob class name");
-		pfxn = "Entity" + name;
->>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 	}
 	
 	@Override
 	public boolean apply(SpawningEntry entry) {
-<<<<<<< HEAD
 		return entityClasses == null ? entityClass == entry.entity.getClass() : entityClasses.contains(entry.entity.getClass());
-=======
-		Class<? extends Entity> c = entry.entity.getClass();
-		if (ret != null) return c == ret;
-		String mob = c.getSimpleName();
-		if (mob.equals(name) || mob.equalsIgnoreCase(pfxn)) {
-			ret = c;
-			return true;
-		}
-		return false;
->>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 	}
 
 }
