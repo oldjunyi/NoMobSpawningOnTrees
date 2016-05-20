@@ -20,7 +20,12 @@ plugins {
     id "net.minecraftforge.gradle.forge" version "2.0.2"
 }
 */
+<<<<<<< HEAD
 version = "1.1.4-mc1.8.9"
+=======
+
+version = "1.1.2-mc1.8.9"
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 group = "com.mmyzd.nmsot"
 archivesBaseName = "NoMobSpawningOnTrees"
 
@@ -28,8 +33,14 @@ sourceCompatibility = 1.6
 targetCompatibility = 1.6
 compileJava.options.encoding = 'UTF-8'
 
+<<<<<<< HEAD
 minecraft {
     version = "1.8.9-11.15.1.1902-1.8.9"
+=======
+
+minecraft {
+    version = "1.8.9-11.15.1.1756"
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.

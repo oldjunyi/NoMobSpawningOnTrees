@@ -53,6 +53,18 @@ public class ConfigManager {
 			"woodlogs    # This line disables mob spawning on all types of wood logs.",
 			"block:minecraft:brown_mushroom_block || block:minecraft:red_mushroom_block",
 			"# The above line disables mob spawning on mushroom blocks.",
+<<<<<<< HEAD
+=======
+			"# Also, it shows you can use operators when defining rules:",
+			"#   not := \"~\" or \"!\"",
+			"#   and := \"&\" or \"&&\"",
+			"#   or  := \"|\" or \"||\"",
+			"#   parentheses := \"(\" or \")\"",
+			"# If the first character of any rule is \"-\", the rule will be treated as whitelist.",
+			"# For example, \"-mob:EntityCreeper\" or \"-mob:creeper\" allows creeper to spawn.",
+			"# The rules are applied one by one, if there is conflict between blacklist and whitelist,",
+			"# the latter rule will override the former rule."
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 		});
 		blacklistRules.comment = "For details, please check https://github.com/oldjunyi/NoMobSpawningOnTrees/wiki";
 		
@@ -65,10 +77,17 @@ public class ConfigManager {
 		spawnCapacityAnimal .set(Math.min(Math.max(spawnCapacityAnimal .getInt(), -1), 10000));
 		spawnCapacityAmbient.set(Math.min(Math.max(spawnCapacityAmbient.getInt(), -1), 10000));
 		spawnCapacityWater  .set(Math.min(Math.max(spawnCapacityWater  .getInt(), -1), 10000));
+<<<<<<< HEAD
 		updateSpawnCapacity("monster", spawnCapacityMonster.getInt());
 		updateSpawnCapacity("creature", spawnCapacityAnimal.getInt());
 		updateSpawnCapacity("ambient", spawnCapacityAmbient.getInt());
 		updateSpawnCapacity("waterCreature", spawnCapacityWater.getInt());
+=======
+		updateSpawnCapacity("MONSTER", spawnCapacityMonster.getInt());
+		updateSpawnCapacity("CREATURE", spawnCapacityAnimal.getInt());
+		updateSpawnCapacity("AMBIENT", spawnCapacityAmbient.getInt());
+		updateSpawnCapacity("WATER_CREATURE", spawnCapacityWater.getInt());
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 		if (NoMobSpawningOnTrees.instance.rules != null)
 			NoMobSpawningOnTrees.instance.rules = new RuleSet(blacklistRules.getStringList());
 		file.save();
@@ -92,6 +111,10 @@ public class ConfigManager {
 		} catch (Exception e) {
 			LogManager.getLogger(NoMobSpawningOnTrees.MODID).info("Failed to set spawn capacity for " + name);
 		}
+<<<<<<< HEAD
 	}
 	
+=======
+	}	
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 }

@@ -6,7 +6,10 @@ import java.util.LinkedList;
 import org.apache.logging.log4j.LogManager;
 
 import com.mmyzd.nmsot.NoMobSpawningOnTrees;
+<<<<<<< HEAD
 import com.mmyzd.nmsot.SpawnListManager;
+=======
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleSet extends Rule {
@@ -27,6 +30,7 @@ public class RuleSet extends Rule {
 			s.add('#');
 			char c = skipSpace(s);
 			if (c == '-') flip = true;
+<<<<<<< HEAD
 			if (c == '-' || c == '+' || c == '@') s.removeFirst();
 			if (c == '#') continue;
 			try {
@@ -38,6 +42,15 @@ public class RuleSet extends Rule {
 					u.add(rule);
 					v.add(flip);
 				}
+=======
+			if (c == '-' || c == '+') s.removeFirst();
+			if (c == '#') continue;
+			try {
+				Rule rule = expr(s);
+				if (skipSpace(s) != '#') throw new Exception("Syntax error");
+				u.add(rule);
+				v.add(flip);
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 			} catch (Exception e) {
 				StringBuilder debugInfo = new StringBuilder();
 				int space = data[i].length() - s.size() + 1;
@@ -65,7 +78,11 @@ public class RuleSet extends Rule {
 	}
 	
 	public static boolean isDelimiter(char c) {
+<<<<<<< HEAD
 		return Character.isWhitespace(c) || ":#()!~|&,".indexOf(c) != -1;
+=======
+		return Character.isWhitespace(c) || ":#()!~|&".indexOf(c) != -1;
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 	}
 	
 	public static boolean getTokenEqualsIgnoreCase(LinkedList<Character> s, String target) {
@@ -107,6 +124,16 @@ public class RuleSet extends Rule {
 		if (!getTokenEqualsIgnoreCase(s, ":")) throw new Exception("Syntax error, \":\" is required");
 	}
 	
+<<<<<<< HEAD
+=======
+	public static String getIdentifier(LinkedList<Character> s, String name) throws Exception {
+		String ret = getToken(s);
+		if (RuleSet.isDelimiter(ret.charAt(0)))
+			throw new Exception("Invalid identifier for " + name);
+		return ret;
+	}
+	
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 	Rule expr(LinkedList<Character> s) throws Exception {
 		ArrayList<Rule> list = new ArrayList<Rule>();
 		list.add(term(s));
@@ -151,8 +178,11 @@ public class RuleSet extends Rule {
 			if (getTokenEqualsIgnoreCase(s, "mobtype")) rule = new RuleMobType(s);
 			if (getTokenEqualsIgnoreCase(s, "dim")) rule = new RuleDimension(s);
 			if (getTokenEqualsIgnoreCase(s, "chance")) rule = new RuleChance(s);
+<<<<<<< HEAD
 			if (getTokenEqualsIgnoreCase(s, "biome")) rule = new RuleBiome(s);
 			if (getTokenEqualsIgnoreCase(s, "biometype")) rule = new RuleBiomeType(s);
+=======
+>>>>>>> fadfc75ef6f4b7654eb38d208a04d4320c9c61e3
 		}
 		if (rule == null) throw new Exception("Invalid tag <" + getToken(s) + ">");
 		if (rule instanceof RuleNot && not) return ((RuleNot)rule).rule;
