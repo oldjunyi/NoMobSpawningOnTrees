@@ -2,11 +2,14 @@ package com.mmyzd.nmsot.rule;
 
 import java.util.LinkedList;
 
+import org.apache.logging.log4j.LogManager;
+
+import com.mmyzd.nmsot.NoMobSpawningOnTrees;
 import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleChance extends Rule {
 	
-	double prob;
+	private double prob = 0.0;
 	
 	public RuleChance(LinkedList<Character> s) throws Exception {
 		RuleSet.nextPart(s);
@@ -16,7 +19,9 @@ public class RuleChance extends Rule {
 		} catch (Exception e) {
 			throw new Exception("Invalid probability");
 		}
-		if (prob < 0 || prob > 1) throw new Exception("Probability should fit in 0.0 ~ 1.0");
+		if (prob < 0 || prob > 1) {
+			LogManager.getLogger(NoMobSpawningOnTrees.MODID).warn("Probability should fit in 0.0 ~ 1.0");
+		}
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.mmyzd.nmsot.rule;
+package com.mmyzd.nmsot;
 
 public class IntegerRange {
 	
@@ -39,6 +39,7 @@ public class IntegerRange {
 				break;
 			}
 		}
+		if (ret.toString().equals("-") || ret.toString().equals("+")) return "";
 		return ret.toString();
 	}
 	

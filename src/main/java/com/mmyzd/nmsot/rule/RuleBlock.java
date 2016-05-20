@@ -3,24 +3,24 @@ package com.mmyzd.nmsot.rule;
 import java.util.LinkedList;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.oredict.OreDictionary;
 
+import com.mmyzd.nmsot.IntegerRange;
 import com.mmyzd.nmsot.SpawningEntry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RuleBlock extends Rule {
 	
-	Block block;
-	int lhs, rhs;
+	private Block block = Blocks.air;
+	private int lhs = 0, rhs = OreDictionary.WILDCARD_VALUE - 1;
 	
 	public RuleBlock(LinkedList<Character> s) throws Exception {
 		RuleSet.nextPart(s);
-		String modid = RuleSet.getIdentifier(s, "modid");
+		String modid = RuleSet.getToken(s);
 		RuleSet.nextPart(s);
-		String bname = RuleSet.getIdentifier(s, "block name");
-		lhs = 0;
-		rhs = OreDictionary.WILDCARD_VALUE - 1;
+		String bname = RuleSet.getToken(s);
 		if (RuleSet.getTokenEqualsIgnoreCase(s, ":")) {
 			IntegerRange range = IntegerRange.parse(RuleSet.getToken(s));
 			lhs = range.lhs;

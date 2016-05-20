@@ -35,6 +35,7 @@ public class CommandManager extends CommandBase {
 			sender.addChatMessage(new ChatComponentText("  /nmsot help  -  Get help"));
 			sender.addChatMessage(new ChatComponentText("  /nmsot reload  -  Reload configuration"));
 		} else if (word[0].toLowerCase().equals("reload")) {
+			SpawnListManager.reload();
 			NoMobSpawningOnTrees.instance.config.reload();
 			sender.addChatMessage(new ChatComponentText("NoMobSpawningOnTrees.cfg has been reloaded."));
 		} else {
@@ -42,6 +43,7 @@ public class CommandManager extends CommandBase {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public List addTabCompletionOptions(ICommandSender sender, String[] word) {
 		if (word.length != 1) return null;

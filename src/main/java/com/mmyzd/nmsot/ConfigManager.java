@@ -53,15 +53,6 @@ public class ConfigManager {
 			"woodlogs    # This line disables mob spawning on all types of wood logs.",
 			"block:minecraft:brown_mushroom_block || block:minecraft:red_mushroom_block",
 			"# The above line disables mob spawning on mushroom blocks.",
-			"# Also, it shows you can use operators when defining rules:",
-			"#   not := \"~\" or \"!\"",
-			"#   and := \"&\" or \"&&\"",
-			"#   or  := \"|\" or \"||\"",
-			"#   parentheses := \"(\" or \")\"",
-			"# If the first character of any rule is \"-\", the rule will be treated as whitelist.",
-			"# For example, \"-mob:EntityCreeper\" or \"-mob:creeper\" allows creeper to spawn.",
-			"# The rules are applied one by one, if there is conflict between blacklist and whitelist,",
-			"# the latter rule will override the former rule."
 		});
 		blacklistRules.comment = "For details, please check https://github.com/oldjunyi/NoMobSpawningOnTrees/wiki";
 		

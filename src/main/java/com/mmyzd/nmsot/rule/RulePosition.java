@@ -2,21 +2,23 @@ package com.mmyzd.nmsot.rule;
 
 import java.util.LinkedList;
 
+import com.mmyzd.nmsot.IntegerRange;
 import com.mmyzd.nmsot.SpawningEntry;
 
 public class RulePosition extends Rule {
 	
-	int lhsX, rhsX;
-	int lhsY, rhsY;
-	int lhsZ, rhsZ;
+	private static final int INF = 300000000;
+	private int lhsX = -INF, rhsX = +INF;
+	private int lhsY = -INF, rhsY = +INF;
+	private int lhsZ = -INF, rhsZ = +INF;
 	
 	public RulePosition(LinkedList<Character> s) throws Exception {
 		RuleSet.nextPart(s);
-		String[] pos = RuleSet.getToken(s).split(",");
-		if (pos.length != 3) throw new Exception("Invalid coordinate");
-		IntegerRange rangeX = IntegerRange.parse(pos[0]);
-		IntegerRange rangeY = IntegerRange.parse(pos[1]);
-		IntegerRange rangeZ = IntegerRange.parse(pos[2]);
+		IntegerRange rangeX = IntegerRange.parse(RuleSet.getToken(s));
+		RuleSet.getTokenEqualsIgnoreCase(s, ",");
+		IntegerRange rangeY = IntegerRange.parse(RuleSet.getToken(s));
+		RuleSet.getTokenEqualsIgnoreCase(s, ",");
+		IntegerRange rangeZ = IntegerRange.parse(RuleSet.getToken(s));
 		lhsX = rangeX.lhs;
 		lhsY = rangeY.lhs - 1;
 		lhsZ = rangeZ.lhs;

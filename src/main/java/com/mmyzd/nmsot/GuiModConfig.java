@@ -5,6 +5,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 
 public class GuiModConfig extends GuiConfig {
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public GuiModConfig(GuiScreen parent) {
 		super(
 			parent,
@@ -15,4 +17,5 @@ public class GuiModConfig extends GuiConfig {
 			GuiConfig.getAbridgedConfigPath(NoMobSpawningOnTrees.instance.config.file.toString())
 		);
 	}
+	
 }
