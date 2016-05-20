@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
@@ -25,7 +25,7 @@ public class SpawnListManager {
 		public int weight, countMin, countMax;
 		public EnumCreatureType type;
 		public BiomeGenBase biome;
-		public Class<? extends EntityLiving> mob;
+		public Class<? extends Entity> mob;
 	}
 	
 	private static ArrayList<SpawnEntry> entries = new ArrayList<SpawnEntry>();
@@ -34,7 +34,7 @@ public class SpawnListManager {
 		int weight = 5, countMin = 1, countMax = 2;
 		EnumCreatureType type = EnumCreatureType.monster;
 		HashSet<BiomeGenBase> biomes = new HashSet<BiomeGenBase>();
-		HashSet<Class<? extends EntityLiving>> mobs = new HashSet<Class<? extends EntityLiving>>();
+		HashSet<Class<? extends Entity>> mobs = new HashSet<Class<? extends Entity>>();
 		while (true) {
 			String token = RuleSet.getToken(s);
 			if (token.equalsIgnoreCase("biome")) {
@@ -70,7 +70,7 @@ public class SpawnListManager {
 			if (!RuleSet.getTokenEqualsIgnoreCase(s, ",")) break;
 		}
 		if (RuleSet.skipSpace(s) != '#') throw new Exception("Syntax error");
-		for (Class<? extends EntityLiving> mob: mobs) {
+		for (Class<? extends Entity> mob: mobs) {
 			for (BiomeGenBase biome : biomes) {
 				boolean modified = false;
 				@SuppressWarnings("unchecked")
