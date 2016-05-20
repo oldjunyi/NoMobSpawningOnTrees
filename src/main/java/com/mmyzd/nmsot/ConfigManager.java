@@ -65,10 +65,10 @@ public class ConfigManager {
 		spawnCapacityAnimal .set(Math.min(Math.max(spawnCapacityAnimal .getInt(), -1), 10000));
 		spawnCapacityAmbient.set(Math.min(Math.max(spawnCapacityAmbient.getInt(), -1), 10000));
 		spawnCapacityWater  .set(Math.min(Math.max(spawnCapacityWater  .getInt(), -1), 10000));
-		updateSpawnCapacity("monster", spawnCapacityMonster.getInt());
-		updateSpawnCapacity("creature", spawnCapacityAnimal.getInt());
-		updateSpawnCapacity("ambient", spawnCapacityAmbient.getInt());
-		updateSpawnCapacity("waterCreature", spawnCapacityWater.getInt());
+		updateSpawnCapacity(EnumCreatureType.monster, spawnCapacityMonster.getInt());
+		updateSpawnCapacity(EnumCreatureType.creature, spawnCapacityAnimal.getInt());
+		updateSpawnCapacity(EnumCreatureType.ambient, spawnCapacityAmbient.getInt());
+		updateSpawnCapacity(EnumCreatureType.waterCreature, spawnCapacityWater.getInt());
 		if (NoMobSpawningOnTrees.instance.rules != null)
 			NoMobSpawningOnTrees.instance.rules = new RuleSet(blacklistRules.getStringList());
 		file.save();
@@ -76,22 +76,22 @@ public class ConfigManager {
 	
 	HashMap<String, Integer> capacityBackup = new HashMap<String, Integer>();
 	
-	void updateSpawnCapacity(String name, int cur) {
+	void updateSpawnCapacity(EnumCreatureType e, int cur) {
 		try {
-			EnumCreatureType e = EnumCreatureType.valueOf(name);
 			if (cur == -1) {
-				Integer old = capacityBackup.get(name);
+				Integer old = capacityBackup.get(e.name());
 				if (old == null) return;
 				ObfuscationReflectionHelper.setPrivateValue(EnumCreatureType.class, e, old, "maxNumberOfCreature", "field_75606_e");
-				capacityBackup.remove(name);
+				capacityBackup.remove(e.name());
 			} else {
-				Integer old = capacityBackup.get(name);
-				if (old == null) capacityBackup.put(name, e.getMaxNumberOfCreature());
+				Integer old = capacityBackup.get(e.name());
+				if (old == null) capacityBackup.put(e.name(), e.getMaxNumberOfCreature());
 				ObfuscationReflectionHelper.setPrivateValue(EnumCreatureType.class, e, cur, "maxNumberOfCreature", "field_75606_e");
 			}
-		} catch (Exception e) {
-			LogManager.getLogger(NoMobSpawningOnTrees.MODID).info("Failed to set spawn capacity for " + name);
+		} catch (Exception c) {
+			LogManager.getLogger(NoMobSpawningOnTrees.MODID).info("Failed to set spawn capacity for " + e.name());
 		}
 	}
+	
 	
 }
