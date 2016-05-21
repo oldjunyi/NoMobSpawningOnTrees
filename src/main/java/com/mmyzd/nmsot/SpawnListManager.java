@@ -31,7 +31,7 @@ public class SpawnListManager {
 	private static ArrayList<SpawnEntry> entries = new ArrayList<SpawnEntry>();
 	
 	public static void parse(LinkedList<Character> s) throws Exception {
-		int weight = 5, countMin = 1, countMax = 2;
+		int weight = 100, countMin = 4, countMax = 4;
 		EnumCreatureType type = EnumCreatureType.monster;
 		HashSet<BiomeGenBase> biomes = new HashSet<BiomeGenBase>();
 		HashSet<Class<? extends Entity>> mobs = new HashSet<Class<? extends Entity>>();
