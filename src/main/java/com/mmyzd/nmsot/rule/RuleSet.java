@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import org.apache.logging.log4j.LogManager;
 
 import com.mmyzd.nmsot.NoMobSpawningOnTrees;
+import com.mmyzd.nmsot.SpawnListManager;
 import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleSet extends Rule {
@@ -26,13 +27,17 @@ public class RuleSet extends Rule {
 			s.add('#');
 			char c = skipSpace(s);
 			if (c == '-') flip = true;
-			if (c == '-' || c == '+') s.removeFirst();
+			if (c == '-' || c == '+' || c == '@') s.removeFirst();
 			if (c == '#') continue;
 			try {
-				Rule rule = expr(s);
-				if (skipSpace(s) != '#') throw new Exception("Syntax error");
-				u.add(rule);
-				v.add(flip);
+				if (c == '@') {
+					SpawnListManager.parse(s);
+				} else {
+					Rule rule = expr(s);
+					if (skipSpace(s) != '#') throw new Exception("Syntax error");
+					u.add(rule);
+					v.add(flip);
+				}
 			} catch (Exception e) {
 				StringBuilder debugInfo = new StringBuilder();
 				int space = data[i].length() - s.size() + 1;
@@ -60,7 +65,7 @@ public class RuleSet extends Rule {
 	}
 	
 	public static boolean isDelimiter(char c) {
-		return Character.isWhitespace(c) || ":#()!~|&".indexOf(c) != -1;
+		return Character.isWhitespace(c) || ":#()!~|&,".indexOf(c) != -1;
 	}
 	
 	public static boolean getTokenEqualsIgnoreCase(LinkedList<Character> s, String target) {
@@ -100,13 +105,6 @@ public class RuleSet extends Rule {
 	
 	public static void nextPart(LinkedList<Character> s) throws Exception {
 		if (!getTokenEqualsIgnoreCase(s, ":")) throw new Exception("Syntax error, \":\" is required");
-	}
-	
-	public static String getIdentifier(LinkedList<Character> s, String name) throws Exception {
-		String ret = getToken(s);
-		if (RuleSet.isDelimiter(ret.charAt(0)))
-			throw new Exception("Invalid identifier for " + name);
-		return ret;
 	}
 	
 	Rule expr(LinkedList<Character> s) throws Exception {
@@ -153,6 +151,8 @@ public class RuleSet extends Rule {
 			if (getTokenEqualsIgnoreCase(s, "mobtype")) rule = new RuleMobType(s);
 			if (getTokenEqualsIgnoreCase(s, "dim")) rule = new RuleDimension(s);
 			if (getTokenEqualsIgnoreCase(s, "chance")) rule = new RuleChance(s);
+			if (getTokenEqualsIgnoreCase(s, "biome")) rule = new RuleBiome(s);
+			if (getTokenEqualsIgnoreCase(s, "biometype")) rule = new RuleBiomeType(s);
 		}
 		if (rule == null) throw new Exception("Invalid tag <" + getToken(s) + ">");
 		if (rule instanceof RuleNot && not) return ((RuleNot)rule).rule;

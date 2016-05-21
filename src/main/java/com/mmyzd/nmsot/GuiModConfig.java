@@ -5,6 +5,7 @@ import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
 
 public class GuiModConfig extends GuiConfig {
+	
 	public GuiModConfig(GuiScreen parent) {
 		super(
 			parent,
@@ -15,4 +16,5 @@ public class GuiModConfig extends GuiConfig {
 			GuiConfig.getAbridgedConfigPath(NoMobSpawningOnTrees.instance.config.file.toString())
 		);
 	}
+	
 }

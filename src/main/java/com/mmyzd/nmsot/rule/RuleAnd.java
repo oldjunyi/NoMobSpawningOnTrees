@@ -6,7 +6,7 @@ import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleAnd extends Rule {
 	
-	Rule[] rule;
+	private Rule[] rule = null;
 	
 	public RuleAnd(ArrayList<Rule> list) {
 		int n = list.size();

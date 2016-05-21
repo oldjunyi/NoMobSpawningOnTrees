@@ -4,7 +4,7 @@ import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleNot extends Rule {
 	
-	Rule rule;
+	public Rule rule = null;
 	
 	public RuleNot(Rule rule) {
 		this.rule = rule;
