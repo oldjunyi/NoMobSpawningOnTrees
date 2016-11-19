@@ -2,7 +2,6 @@
 .gradle
 .settings
 bin
-build
 eclipse
 run
 
