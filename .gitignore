@@ -1,9 +1,11 @@
 #directories
 .gradle
 .settings
+build
 bin
 eclipse
 run
+!build/libs
 
 #files
 .classpath
