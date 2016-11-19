@@ -5,7 +5,7 @@ build
 bin
 eclipse
 run
-!build/libs
+!build/libs/*
 
 #files
 .classpath
