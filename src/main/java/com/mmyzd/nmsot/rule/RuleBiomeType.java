@@ -30,7 +30,7 @@ public class RuleBiomeType extends Rule {
 	
 	@Override
 	public boolean apply(SpawningEntry entry) {
-		return biomeIDs.contains(Biome.getIdForBiome(entry.world.getBiomeGenForCoords(entry.pos)));
+		return biomeIDs.contains(Biome.getIdForBiome(entry.world.getBiome(entry.pos)));
 	}
 
 }

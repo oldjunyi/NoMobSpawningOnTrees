@@ -1,3 +1,4 @@
+
 package com.mmyzd.nmsot.rule;
 
 import java.util.Iterator;
@@ -37,7 +38,7 @@ public class RuleBiome extends Rule {
 	
 	@Override
 	public boolean apply(SpawningEntry entry) {
-		return Biome.getIdForBiome(entry.world.getBiomeGenForCoords(entry.pos)) == index;
+		return Biome.getIdForBiome(entry.world.getBiome(entry.pos)) == index;
 	}
 
 }

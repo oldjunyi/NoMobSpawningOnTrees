@@ -25,8 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(
 	modid = NoMobSpawningOnTrees.MODID,
 	useMetadata = true,
-	guiFactory = "com.mmyzd.nmsot.GuiFactory",
-	acceptedMinecraftVersions = "[1.9.4,1.10.2]"
+	guiFactory = "com.mmyzd.nmsot.GuiFactory"
 )
 public class NoMobSpawningOnTrees {
 	
