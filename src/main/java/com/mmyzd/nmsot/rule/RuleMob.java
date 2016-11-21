@@ -36,7 +36,7 @@ public class RuleMob extends Rule {
 				String value = e.getName().toLowerCase().replaceAll("\\s", "");
 				addMobLookup(mobFullNames, value, key);
 				addMobLookup(mobNames, value.substring(value.indexOf('.') + 1), key);
-				addMobLookup(classNames, key.getSimpleName(), key);
+				addMobLookup(classNames, key.getSimpleName().toLowerCase(), key);
 			}
 		}
 		String name = RuleSet.getToken(s).toLowerCase();
