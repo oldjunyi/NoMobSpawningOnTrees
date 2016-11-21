@@ -22,7 +22,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.NetworkCheckHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = NoMobSpawningOnTrees.MODID, useMetadata = true, guiFactory = "com.mmyzd.nmsot.GuiFactory")
+@Mod(
+	modid = NoMobSpawningOnTrees.MODID,
+	useMetadata = true,
+	guiFactory = "com.mmyzd.nmsot.GuiFactory",
+	acceptedMinecraftVersions = "[1.9.4,1.10.2]"
+)
 public class NoMobSpawningOnTrees {
 	
 	public static final String MODID = "nmsot";
