@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Logger;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -34,7 +35,7 @@ public class RuleMob extends Rule {
 				value = value.toLowerCase().replaceAll("\\s", "");
 				addMobLookup(mobFullNames, value, key);
 				addMobLookup(mobNames, value.substring(value.indexOf('.') + 1), key);
-				addMobLookup(classNames, key.getSimpleName(), key);
+				addMobLookup(classNames, key.getSimpleName().toLowerCase(), key);
 			}
 		}
 		String name = RuleSet.getToken(s).toLowerCase();
