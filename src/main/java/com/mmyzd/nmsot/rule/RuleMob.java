@@ -3,9 +3,9 @@ package com.mmyzd.nmsot.rule;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Logger;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -16,12 +16,12 @@ import com.mmyzd.nmsot.NoMobSpawningOnTrees;
 import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleMob extends Rule {
-	
+
 	public Class<? extends Entity> entityClass = null;
 	public HashSet<Class<? extends Entity>> entityClasses = null;
-	
+
 	private static HashMap<String, HashSet<Class<? extends Entity>>> classNames = null, mobNames = null, mobFullNames;
-	
+
 	public RuleMob(LinkedList<Character> s) throws Exception {
 		RuleSet.nextPart(s);
 		if (classNames == null) {
@@ -29,10 +29,9 @@ public class RuleMob extends Rule {
 			mobNames = new HashMap<String, HashSet<Class<? extends Entity>>>();
 			mobFullNames = new HashMap<String, HashSet<Class<? extends Entity>>>();
 			Map<Class<? extends Entity>, String> entityList = EntityList.CLASS_TO_NAME;
-			for (Entry<Class<? extends Entity>, String> e: entityList.entrySet()) {
+			for (Entry<Class<? extends Entity>, String> e : entityList.entrySet()) {
 				Class<? extends Entity> key = e.getKey();
-				String value = e.getValue();
-				value = value.toLowerCase().replaceAll("\\s", "");
+				String value = e.getValue().toLowerCase().replaceAll("\\s", "");
 				addMobLookup(mobFullNames, value, key);
 				addMobLookup(mobNames, value.substring(value.indexOf('.') + 1), key);
 				addMobLookup(classNames, key.getSimpleName().toLowerCase(), key);
@@ -59,16 +58,20 @@ public class RuleMob extends Rule {
 			LogManager.getLogger(NoMobSpawningOnTrees.MODID).warn("Can not find this mob: " + name);
 		}
 	}
-	
-	private void addMobLookup(HashMap<String, HashSet<Class<? extends Entity>>> lookup, String key, Class<? extends Entity> value) {
+
+	private void addMobLookup(HashMap<String, HashSet<Class<? extends Entity>>> lookup, String key,
+			Class<? extends Entity> value) {
 		HashSet<Class<? extends Entity>> group = lookup.get(key);
-		if (group == null) lookup.put(key, group = new HashSet<Class<? extends Entity>>());
+		if (group == null) {
+			lookup.put(key, group = new HashSet<Class<? extends Entity>>());
+		}
 		group.add(value);
 	}
-	
+
 	@Override
 	public boolean apply(SpawningEntry entry) {
-		return entityClasses == null ? entityClass == entry.entity.getClass() : entityClasses.contains(entry.entity.getClass());
+		return entityClasses == null ? entityClass == entry.entity.getClass()
+				: entityClasses.contains(entry.entity.getClass());
 	}
 
 }
