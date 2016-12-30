@@ -51,14 +51,16 @@ public class CommandManager extends CommandBase {
 
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
-		if (args.length != 1)
+		if (args.length != 1) {
 			return null;
+		}
 		ArrayList<String> ret = new ArrayList<String>();
-		for (int i = 0; i < subCommand.length; i++)
+		for (int i = 0; i < subCommand.length; i++) {
 			if (subCommand[i].startsWith(args[0].toLowerCase())) {
 				ret.add(subCommand[i]);
 				return ret;
 			}
+		}
 		ret.add(subCommand[0]);
 		return ret;
 	}
