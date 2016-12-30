@@ -2,6 +2,7 @@ package com.mmyzd.nmsot.rule;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -20,7 +21,7 @@ public class RuleBiomeType extends Rule {
 		RuleSet.nextPart(s);
 		String token = RuleSet.getToken(s).toUpperCase();
 		Type type = BiomeDictionary.Type.getType(token);
-		Biome[] biomes = BiomeDictionary.getBiomesForType(type);
+		Set<Biome> biomes = BiomeDictionary.getBiomes(type);
 		for (Biome biome: biomes) biomeIDs.add(Biome.getIdForBiome(biome));
 		if (biomeIDs.isEmpty()) {
 			LogManager.getLogger(NoMobSpawningOnTrees.MODID).warn("No biome in biome type: " + token);
