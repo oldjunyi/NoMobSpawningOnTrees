@@ -8,9 +8,9 @@ import com.mmyzd.nmsot.NoMobSpawningOnTrees;
 import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleChance extends Rule {
-	
+
 	private double prob = 0.0;
-	
+
 	public RuleChance(LinkedList<Character> s) throws Exception {
 		RuleSet.nextPart(s);
 		String tmp = RuleSet.getToken(s);
