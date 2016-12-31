@@ -2,10 +2,10 @@ package com.mmyzd.nmsot.rule;
 
 import java.util.LinkedList;
 
+import com.mmyzd.nmsot.SpawningEntry;
+
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-
-import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleMaterial extends Rule {
 

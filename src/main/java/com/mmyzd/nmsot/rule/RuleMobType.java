@@ -4,10 +4,10 @@ import java.util.LinkedList;
 
 import org.apache.logging.log4j.LogManager;
 
-import net.minecraft.entity.EnumCreatureType;
-
 import com.mmyzd.nmsot.NoMobSpawningOnTrees;
 import com.mmyzd.nmsot.SpawningEntry;
+
+import net.minecraft.entity.EnumCreatureType;
 
 public class RuleMobType extends Rule {
 

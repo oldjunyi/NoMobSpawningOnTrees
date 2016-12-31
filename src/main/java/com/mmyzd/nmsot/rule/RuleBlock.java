@@ -2,13 +2,13 @@ package com.mmyzd.nmsot.rule;
 
 import java.util.LinkedList;
 
+import com.mmyzd.nmsot.IntegerRange;
+import com.mmyzd.nmsot.SpawningEntry;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
-
-import com.mmyzd.nmsot.IntegerRange;
-import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleBlock extends Rule {
 

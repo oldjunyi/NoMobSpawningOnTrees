@@ -6,12 +6,12 @@ import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 
+import com.mmyzd.nmsot.NoMobSpawningOnTrees;
+import com.mmyzd.nmsot.SpawningEntry;
+
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
-
-import com.mmyzd.nmsot.NoMobSpawningOnTrees;
-import com.mmyzd.nmsot.SpawningEntry;
 
 public class RuleBiomeType extends Rule {
 
