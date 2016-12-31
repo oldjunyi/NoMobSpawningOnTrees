@@ -4,9 +4,15 @@
 bin
 build
 eclipse
+run
 
 #files
 .classpath
 .project
+*.launch
 forge*changelog.txt
+Paulscode*
+CREDITS-fml.txt
+LICENSE-new.txt
+MinecraftForge-Credits.txt
 README.txt
