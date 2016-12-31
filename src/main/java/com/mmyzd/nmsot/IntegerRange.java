@@ -1,6 +1,5 @@
 package com.mmyzd.nmsot;
 
-import java.util.Collections;
 import java.util.LinkedList;
 
 import com.mmyzd.nmsot.rule.RuleSet;

@@ -1,6 +1,5 @@
 package com.mmyzd.nmsot.rule;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.apache.logging.log4j.LogManager;
@@ -8,8 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import com.mmyzd.nmsot.IntegerRange;
 import com.mmyzd.nmsot.NoMobSpawningOnTrees;
 import com.mmyzd.nmsot.SpawningEntry;
-
-import net.minecraft.world.biome.Biome;
 
 public class RuleMoonPhase extends Rule {
 

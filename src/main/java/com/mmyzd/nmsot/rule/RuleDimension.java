@@ -1,17 +1,15 @@
 package com.mmyzd.nmsot.rule;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.apache.logging.log4j.LogManager;
 
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.DimensionManager;
-
 import com.mmyzd.nmsot.IntegerRange;
 import com.mmyzd.nmsot.NoMobSpawningOnTrees;
 import com.mmyzd.nmsot.SpawningEntry;
+
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
 
 public class RuleDimension extends Rule {
 
