@@ -3,17 +3,16 @@ package com.mmyzd.nmsot.rule;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.logging.log4j.LogManager;
 
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.Entity;
-
 import com.mmyzd.nmsot.NoMobSpawningOnTrees;
 import com.mmyzd.nmsot.SpawningEntry;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 
 public class RuleMob extends Rule {
 
