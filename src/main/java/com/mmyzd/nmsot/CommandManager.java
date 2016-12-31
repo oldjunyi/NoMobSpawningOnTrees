@@ -1,7 +1,10 @@
 package com.mmyzd.nmsot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -11,13 +14,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 
 public class CommandManager extends CommandBase {
-	
-	static final String[] subCommand = {"reload", "help"};
-	
+
+	static final String[] subCommand = { "reload", "help" };
+
 	@Override
 	public int getRequiredPermissionLevel() {
-        return 2;
-    }
+		return 2;
+	}
 
 	@Override
 	public String getCommandName() {
@@ -47,14 +50,18 @@ public class CommandManager extends CommandBase {
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] word, BlockPos pos) {
-		if (word.length != 1) return null;
+	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args,
+			@Nullable BlockPos pos) {
+		if (args.length != 1) {
+			return null;
+		}
 		ArrayList<String> ret = new ArrayList<String>();
-		for (int i = 0; i < subCommand.length; i++)
-			if (subCommand[i].startsWith(word[0].toLowerCase())) {
+		for (int i = 0; i < subCommand.length; i++) {
+			if (subCommand[i].startsWith(args[0].toLowerCase())) {
 				ret.add(subCommand[i]);
 				return ret;
 			}
+		}
 		ret.add(subCommand[0]);
 		return ret;
 	}
