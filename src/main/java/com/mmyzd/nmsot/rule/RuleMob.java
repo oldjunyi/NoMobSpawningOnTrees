@@ -3,8 +3,7 @@ package com.mmyzd.nmsot.rule;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -12,7 +11,8 @@ import com.mmyzd.nmsot.NoMobSpawningOnTrees;
 import com.mmyzd.nmsot.SpawningEntry;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class RuleMob extends Rule {
 
@@ -27,10 +27,10 @@ public class RuleMob extends Rule {
 			classNames = new HashMap<String, HashSet<Class<? extends Entity>>>();
 			mobNames = new HashMap<String, HashSet<Class<? extends Entity>>>();
 			mobFullNames = new HashMap<String, HashSet<Class<? extends Entity>>>();
-			Map<Class<? extends Entity>, String> entityList = EntityList.CLASS_TO_NAME;
-			for (Entry<Class<? extends Entity>, String> e : entityList.entrySet()) {
-				Class<? extends Entity> key = e.getKey();
-				String value = e.getValue().toLowerCase().replaceAll("\\s", "");
+			List<EntityEntry> entityList = ForgeRegistries.ENTITIES.getValues();
+			for (EntityEntry e : entityList) {
+				Class<? extends Entity> key = e.getEntityClass();
+				String value = e.getName().toLowerCase().replaceAll("\\s", "");
 				addMobLookup(mobFullNames, value, key);
 				addMobLookup(mobNames, value.substring(value.indexOf('.') + 1), key);
 				addMobLookup(classNames, key.getSimpleName().toLowerCase(), key);

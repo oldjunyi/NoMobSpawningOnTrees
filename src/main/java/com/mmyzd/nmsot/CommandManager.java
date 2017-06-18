@@ -22,35 +22,34 @@ public class CommandManager extends CommandBase {
 	}
 
 	@Override
-	public String getCommandName() {
+	public String getName() {
 		return "nmsot";
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender sender) {
+	public String getUsage(ICommandSender sender) {
 		return "/nmsot <help|reload>";
 	}
 
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] word) throws CommandException {
 		if (word.length != 1) {
-			sender.addChatMessage(new TextComponentString("Usage: /nmsot <help|reload>"));
+			sender.sendMessage(new TextComponentString("Usage: /nmsot <help|reload>"));
 		} else if (word[0].toLowerCase().equals("help")) {
-			sender.addChatMessage(new TextComponentString("Commands for <No Mob Spawning on Trees> MOD:"));
-			sender.addChatMessage(new TextComponentString("  /nmsot help  -  Get help"));
-			sender.addChatMessage(new TextComponentString("  /nmsot reload  -  Reload configuration"));
+			sender.sendMessage(new TextComponentString("Commands for <No Mob Spawning on Trees> MOD:"));
+			sender.sendMessage(new TextComponentString("  /nmsot help  -  Get help"));
+			sender.sendMessage(new TextComponentString("  /nmsot reload  -  Reload configuration"));
 		} else if (word[0].toLowerCase().equals("reload")) {
 			SpawnListManager.reload();
 			NoMobSpawningOnTrees.instance.config.reload();
-			sender.addChatMessage(new TextComponentString("NoMobSpawningOnTrees.cfg has been reloaded."));
+			sender.sendMessage(new TextComponentString("NoMobSpawningOnTrees.cfg has been reloaded."));
 		} else {
-			sender.addChatMessage(new TextComponentString("Usage: /nmsot <help|reload>"));
+			sender.sendMessage(new TextComponentString("Usage: /nmsot <help|reload>"));
 		}
 	}
 
 	@Override
-	public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args,
-			@Nullable BlockPos pos) {
+	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos pos) {
 		if (args.length != 1) {
 			return null;
 		}
