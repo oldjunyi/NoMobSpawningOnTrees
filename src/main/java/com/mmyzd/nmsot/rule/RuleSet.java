@@ -187,6 +187,8 @@ public class RuleSet extends Rule {
 				rule = new RuleLight(s);
 			} else if (getTokenEqualsIgnoreCase(s, "daytime")) {
 				rule = new RuleDayTime(s);
+			} else if (getTokenEqualsIgnoreCase(s, "spawner")) {
+				rule = new RuleSpawner();
 			}
 		}
 		if (rule == null)

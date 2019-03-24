@@ -15,6 +15,7 @@ public class SpawningEntry {
 	public World world;
 	public Block block;
 	public Entity entity;
+	public boolean fromSpawner;
 
 	public void init(LivingSpawnEvent.CheckSpawn event) {
 		x = (int) Math.floor(event.getX());
@@ -26,6 +27,7 @@ public class SpawningEntry {
 		block = blockState.getBlock();
 		damage = block.damageDropped(blockState);
 		entity = event.getEntity();
+		fromSpawner = event.isSpawner();
 	}
 
 }
